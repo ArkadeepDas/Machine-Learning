@@ -3,7 +3,7 @@ import numpy as np
 from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import confusion_matrix, precision_score, recall_score
+from sklearn.metrics import confusion_matrix, accuracy_score
 
 # Let's create an object of iris dataset
 dataset = load_iris()
@@ -60,3 +60,6 @@ print(prediction_names[:5])
 # Let's check the confusion matrix
 conf_mtx = confusion_matrix(Y_test, predictions)
 print(conf_mtx)
+
+# Checking accuracy
+print(accuracy_score(predictions, Y_test))
