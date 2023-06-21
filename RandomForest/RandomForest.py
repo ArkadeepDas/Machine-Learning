@@ -3,6 +3,7 @@ import numpy as np
 from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import confusion_matrix, precision_score, recall_score
 
 # Let's create an object of iris dataset
 dataset = load_iris()
@@ -38,12 +39,24 @@ random_forest = RandomForestClassifier(n_jobs = 1, random_state = 1)
 # criteron = 'gini': Function to measure the quality of a split.
 # max_depth = None: Maximum depth of the tree
 
-# We can change these parameters and experiment
+# We can change many parameters and experiment
 #############################################################################
 
 # Let's train the model
 random_forest.fit(X_train, Y_train)
 
 # Let's predict the model
-prediction = random_forest.predict(X_test)
-print(prediction)
+predictions = random_forest.predict(X_test)
+print(predictions)
+
+# We can view the predicted probabilities of the features
+prediction_probabilities = random_forest.predict_proba(X_test)
+print(prediction_probabilities)
+
+# Now let's map names for the plants for each predictions
+prediction_names = dataset.target_names[random_forest.predict(X_test)]
+print(prediction_names[:5])
+
+# Let's check the confusion matrix
+conf_mtx = confusion_matrix(Y_test, predictions)
+print(conf_mtx)
