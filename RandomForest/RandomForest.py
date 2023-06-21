@@ -25,3 +25,25 @@ X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size = .3)
 # Check the length of the data
 print('Train data length: ', len(X_train))
 print('Test data length: ', len(X_test))
+
+# Create a Random Forest Classifier
+random_forest = RandomForestClassifier(n_jobs = 1, random_state = 1)
+#############################################################################
+# Parameters Used in Random Forest
+
+# We can play with many variables
+# n_jobs = 1: Priorities the job, how to run accross the system
+# max_features = 'auto': Automatically take features from dataset. If we have more features then we can set some values
+# max_leaf_nodes = None: Ultimate number of leaf nodes
+# criteron = 'gini': Function to measure the quality of a split.
+# max_depth = None: Maximum depth of the tree
+
+# We can change these parameters and experiment
+#############################################################################
+
+# Let's train the model
+random_forest.fit(X_train, Y_train)
+
+# Let's predict the model
+prediction = random_forest.predict(X_test)
+print(prediction)
