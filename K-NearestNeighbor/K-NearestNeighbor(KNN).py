@@ -15,6 +15,7 @@ from sklearn.datasets import load_iris
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import confusion_matrix, classification_report
 
 data = load_iris()
 # Checking feature names
@@ -71,7 +72,19 @@ print('Length of the testing data: ', len(X_test))
 # Create the K-NN Classifier
 # Here we only set number of neighbors = 5. We can set multiple parameters
 # metric: 'minkowsik'. We can use other values there
-knn = KNeighborsClassifier(n_neighbors=5)
+knn = KNeighborsClassifier(n_neighbors=7)
 print('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Training >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
 knn.fit(X_train, Y_train)
 print('Complete Training')
+
+# Now let's check the accuracy
+# We get 100% accuracy in 3 and 5.
+print(knn.score(X_test, Y_test))
+
+# Let's see the confusion matrix
+Y_pred = knn.predict(X_test)
+c_matrix = confusion_matrix(Y_test, Y_pred)
+print(c_matrix)
+
+# Let's check tyhe classification report
+print(classification_report(Y_test, Y_pred))
