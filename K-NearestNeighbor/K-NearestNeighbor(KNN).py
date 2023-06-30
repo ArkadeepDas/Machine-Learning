@@ -53,3 +53,16 @@ plt.scatter(verginica['sepal length (cm)'],
             color='red',
             marker='*')
 plt.savefig('ClusterStructure.png')
+
+# Let's split the data set
+X = df.drop(['target'], axis='columns')
+print(X)
+Y = df['target']
+print(Y)
+X_train, X_test, Y_train, Y_test = train_test_split(X,
+                                                    Y,
+                                                    test_size=0.2,
+                                                    random_state=1)
+# Let's Check the length of the data
+print('Length of training data: ', len(X_train))
+print('Length of the testing data: ', len(X_test))
