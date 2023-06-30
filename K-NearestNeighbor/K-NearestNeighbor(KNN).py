@@ -14,6 +14,7 @@ import pandas as pd
 from sklearn.datasets import load_iris
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
 
 data = load_iris()
 # Checking feature names
@@ -66,3 +67,11 @@ X_train, X_test, Y_train, Y_test = train_test_split(X,
 # Let's Check the length of the data
 print('Length of training data: ', len(X_train))
 print('Length of the testing data: ', len(X_test))
+
+# Create the K-NN Classifier
+# Here we only set number of neighbors = 5. We can set multiple parameters
+# metric: 'minkowsik'. We can use other values there
+knn = KNeighborsClassifier(n_neighbors=5)
+print('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Training >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
+knn.fit(X_train, Y_train)
+print('Complete Training')
