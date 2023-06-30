@@ -12,6 +12,8 @@
 
 import pandas as pd
 from sklearn.datasets import load_iris
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
 
 data = load_iris()
 # Checking feature names
@@ -20,8 +22,34 @@ print(data.feature_names)
 print(data.target_names)
 
 # Let's load the data in a dataframe
-df = pd.DataFrame(data.data, columns = data.feature_names)
+df = pd.DataFrame(data.data, columns=data.feature_names)
 # Adding target column
 df['target'] = data.target
 # Check the data
 print(df.head())
+
+# Here first 50 are Setosa
+# From 50 - 100 are Versicolor
+# From 100 - 150 are Virginica
+
+# So let's split the data and plot them
+setosa = df[:50]
+versicolor = df[50:100]
+verginica = df[100:]
+
+# Now let's try to plot them
+plt.xlabel('Sepal Length')
+plt.ylabel('Sepal Width')
+plt.scatter(setosa['sepal length (cm)'],
+            setosa['sepal width (cm)'],
+            color='green',
+            marker='+')
+plt.scatter(versicolor['sepal length (cm)'],
+            versicolor['sepal width (cm)'],
+            color='blue',
+            marker='.')
+plt.scatter(verginica['sepal length (cm)'],
+            verginica['sepal width (cm)'],
+            color='red',
+            marker='*')
+plt.savefig('ClusterStructure.png')
